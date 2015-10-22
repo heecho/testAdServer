@@ -8,8 +8,6 @@ def run_server():
     listen_socket.bind((HOST, PORT))
     listen_socket.listen(1)
 
-    urls = {'/': index_page(), '/testAD': ad_page()}
-
     print 'Serving HTTP on port %s ...' % PORT
     while True:
         client_connection, client_address = listen_socket.accept()
@@ -21,19 +19,10 @@ def run_server():
         request_page = request_first_part[1]
         print request_verb, request_page
 
-        
-        if request_page != '/favicon.ico':
-            if request_page == '/':
-                page_file = 'index.html'
-            elif request_page == '/testAD':
-                page_file = 'testAd.html'
-
         http_response = """HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n"""
-
       
         http_response += ad_page()
 
-        
         client_connection.sendall(http_response)
         client_connection.close()
 
@@ -41,9 +30,6 @@ def read_page(page):
 	page_file = page
 	with open(page_file, 'r') as f:
 		return f.read()
-
-def index_page():
-	return read_page('index.html')
 
 def ad_page():
 	print "serving ad"
