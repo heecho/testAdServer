@@ -2,6 +2,7 @@
 
 Setup:
 Ensure your placement service URL is set to "http://localhost:8888/"
+(If using a device, use your IP Address + :8888)
 In your terminal, run python fetchAd.py
 
 Request Ad:
